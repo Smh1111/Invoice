@@ -2,7 +2,7 @@
     include "database.php";
     if(isset($_POST['update']))
         {
-            $user_id = $_POST['user_id'];
+            $update_user_id = $_POST['update_user_id'];
 
             $name = $_POST['name'];
 
@@ -12,7 +12,7 @@
 
             
         
-    $sql = "UPDATE users SET name = '$name', email = '$email', password = '$password' WHERE id= '$user_id'";
+    $sql = "UPDATE users SET name = '$name', email = '$email', password = '$password' WHERE id= '$update_user_id'";
     
     $statement = $conn->query($sql);
 
@@ -35,21 +35,18 @@
             $user_id = $_GET['id']; 
         
             $sql = "SELECT * FROM `users` WHERE `id`='$user_id'";
-        
-            $statement = $conn->query($sql); 
+
+            $statement = $conn->query($sql);
+            
             $count = $statement->rowCount();
+            print_r($count);
             if ($count > 0) 
             {        
         
                 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 
                     $id = $row['id'];
-        
-                    $name = $row['name'];
-        
-                    $email = $row['email'];
-        
-                    $password  = $row['password'];
+                    
         
         
                 } 
@@ -79,7 +76,7 @@
             <label>Name</label>
             <input type="text" name="name" class="form-control mb-2">    
         </div>
-        <input type="hidden" name="user_id" value="<?php echo $id; ?>">
+        <input type="hidden" name="update_user_id" value="<?php echo $id; ?>">
         <div class="form-group">
             <label>Email address</label>
             <input type="email" name="email" class="form-control mb-2">
