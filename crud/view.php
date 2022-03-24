@@ -4,8 +4,8 @@ include_once "database.php";
 
 $sql = "SELECT * FROM users";
 
-$statement = $conn->query($sql);
-
+$statement = $conn->prepare($sql);
+$statement->execute();
 //$result = $statement->fetchAll();
 
 ?>

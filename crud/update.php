@@ -14,8 +14,8 @@
         
     $sql = "UPDATE users SET name = '$name', email = '$email', password = '$password' WHERE id= '$update_user_id'";
     
-    $statement = $conn->query($sql);
-
+    $statement = $conn->prepare($sql);
+    $statement->execute();
     if ($statement == TRUE) {
 
         echo "Record Updated successfully.";

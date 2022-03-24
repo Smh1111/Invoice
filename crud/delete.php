@@ -8,9 +8,9 @@ if (isset($_GET['id'])) {
 
     $sql = "DELETE FROM `users` WHERE `id`='$user_id'";
 
-     $result = $conn->query($sql);
-
-    if ($result == TRUE) {
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    if ($statement == TRUE) {
 
         echo "Record deleted successfully.";
 

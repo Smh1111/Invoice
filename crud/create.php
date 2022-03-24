@@ -49,8 +49,9 @@
             $password = $_POST['password'];
         
     $sql = "INSERT INTO users(name, email, password) VALUES('$name', '$email', '$password')";
-    
-    $statement = $conn->query($sql);
+ 
+    $statement = $conn->prepare($sql);
+    $statement->execute();
 
     if ($statement == TRUE) {
 
